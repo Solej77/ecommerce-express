@@ -1,0 +1,27 @@
+{
+  "name": "ecommerce-express",
+  "version": "0.1.0",
+  "description": "Learning Express implementing in ecommerce project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Solej77/ecommerce-express.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Solej77/ecommerce-express/issues"
+  },
+  "homepage": "https://github.com/Solej77/ecommerce-express#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pug": "^2.0.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
