@@ -6,7 +6,8 @@ const productsService = new ProductsService();
 
 router.get('/', async function(req, res, next) {
   const { tags } = req.query;
-  
+  console.log('req', req.query);
+
   try {
     const products = await productsService.getProducts({ tags })
     
@@ -21,7 +22,8 @@ router.get('/', async function(req, res, next) {
 
 router.get('/:productId', async function(req, res, next) {
   const { productId } = req.params;
-  
+  console.log('req', req.params);
+
   try {
     const product = await productsService.getProduct({ productId });
     
@@ -36,12 +38,14 @@ router.get('/:productId', async function(req, res, next) {
 
 router.post('/', function(req, res, next) {
   const { body: product } = req;
+  console.log('req', req.body);
+
   try {
-    const createProduct = productsService.createProduct({ product });
+    const createdProduct = productsService.createProduct({ product });
 
     res.status(201).json({
-      data: createProduct,
-      message: 'products retrieved'
+      data: createdProduct,
+      message: 'products created'
     });
   } catch (err) {
     next(err);
@@ -51,12 +55,13 @@ router.post('/', function(req, res, next) {
 router.put('/:prodcutId', async function(req, res, next) {
   const { productId } = req.params;
   const { body: product } = req.body;
+  console.log('req', req.params, req.body);
 
   try {
-    const updateProduct = await productsService.updateProduct({ productId, product});
+    const updatedProduct = await productsService.updateProduct({ productId, product});
 
     res.status(201).json({
-      data: updateProduct,
+      data: updatedProduct,
       message: 'product updated'
     });
   } catch (err) {
@@ -66,13 +71,14 @@ router.put('/:prodcutId', async function(req, res, next) {
 
 router.delete('/:productId', async function(req, res, next){
   const { productId } = req.params;
+  console.log('req', req.params);
 
   try {
-    const product = await productsService.deleteProduct({ productId });
+    const deletedProduct = await productsService.deleteProduct({ productId });
   
     res.status(200).json({
-      data: product,
-      message: 'products deleted'
+      data: deletedProduct,
+      message: 'product deleted'
     });
   } catch (err) {
     next(err);
