@@ -22,6 +22,7 @@ router.get('/', async function(req, res, next) {
 
 router.get('/:productId', async function(req, res, next) {
   const { productId } = req.params;
+  console.log('productId: ', productId)
   console.log('req', req.params);
 
   try {
@@ -36,29 +37,31 @@ router.get('/:productId', async function(req, res, next) {
   }
 });
 
-router.post('/', function(req, res, next) {
+router.post('/', async function(req, res, next) {
   const { body: product } = req;
   console.log('req', req.body);
 
   try {
-    const createdProduct = productsService.createProduct({ product });
+    const createdProduct = await productsService.createProduct({ product });
 
     res.status(201).json({
       data: createdProduct,
-      message: 'products created'
+      message: 'product created'
     });
   } catch (err) {
     next(err);
   }
 });
 
-router.put('/:prodcutId', async function(req, res, next) {
+router.put('/:productId', async function(req, res, next) {
   const { productId } = req.params;
-  const { body: product } = req.body;
-  console.log('req', req.params, req.body);
+  const product = req.body;
+  console.log('req', req.params);
+  console.log('body', product);
+  
 
   try {
-    const updatedProduct = await productsService.updateProduct({ productId, product});
+    const updatedProduct = await productsService.updateProduct({ productId, product });
 
     res.status(201).json({
       data: updatedProduct,
