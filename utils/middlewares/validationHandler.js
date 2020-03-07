@@ -1,5 +1,8 @@
+const Joi = require('joi');
+
 function validate(data, schema) {
-  return false;
+  const { error } = Joi.validate(data, schema);
+  return error;
 }
 
 // Function type clousure, closure, return oyther function
