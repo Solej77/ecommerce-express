@@ -37,8 +37,6 @@ function productsApi(app) {
 
   router.get('/:productId', async function(req, res, next) {
     const { productId } = req.params;
-    console.log('productId: ', productId)
-    console.log('req', req.params);
 
     try {
       const product = await productsService.getProduct({ productId });
@@ -75,8 +73,6 @@ function productsApi(app) {
     async function(req, res, next) {
       const { productId } = req.params;
       const product = req.body;
-      console.log('req', req.params);
-      console.log('body', product);
     
       try {
         const updatedProduct = await productsService.updateProduct({ productId, product });
@@ -95,7 +91,6 @@ function productsApi(app) {
     passport.authenticate("jwt", { session: false }),
     async function(req, res, next){
       const { productId } = req.params;
-      console.log('req', req.params);
 
       try {
         const deletedProduct = await productsService.deleteProduct({ productId });

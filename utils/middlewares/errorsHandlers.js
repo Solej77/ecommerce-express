@@ -1,5 +1,6 @@
 const Sentry = require("@sentry/node");
 const boom = require('boom');
+const debug = require("debug")("app:error");
 const { config } = require('../../config');
 const isRequestAjaxOrApi = require('../isRequestAjaxOrApi');
 
@@ -24,7 +25,7 @@ function wrapErrors(err, req, res, next) {
 
 function logErrors(err, req, res ,next) {
   Sentry.captureException(err);
-  console.log(err.stack);
+  debug(err.stack);
   next(err);
 }
 
